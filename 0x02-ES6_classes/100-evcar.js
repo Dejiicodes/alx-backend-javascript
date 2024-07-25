@@ -2,7 +2,7 @@ import Car from './10-car';
 
 export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
-    // call constructor of super class (Building)
+    // Call constructor of super class (Car)
     super(brand, motor, color);
 
     // Create objs
@@ -13,14 +13,14 @@ export default class EVCar extends Car {
 
   cloneCar() {
     const NewObj = this.constructor[Symbol.species] || this.constructor;
-    const clone = new NewObj();
-    return clone;
+    return new NewObj();
   }
 
   // Setters
 
   // Getters
 }
+
 /* class TestCar extends Car {};
 const tc1 = new TestCar("Nissan", "Turbo", "Pink");
 const tc2 = tc1.cloneCar();
