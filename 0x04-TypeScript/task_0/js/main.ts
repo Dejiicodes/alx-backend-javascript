@@ -1,37 +1,52 @@
 interface Student {
-    firstName: string;
-    lastName: string;
-    age: number;
-    location: string;
+	firstName: string;
+	lastName: string;
+	age: number;
+	location: string;
 }
 
 const student1: Student = {
-    firstName: 'Ayo',
-    lastName: 'Kunle',
-    age: 34,
-    location: 'Ogba',
-}
+	firstName: "Ayo",
+	lastName: "Kunle",
+	age: 32,
+	location: "Ogba",
+};
 
 const student2: Student = {
-    firstName: 'Kunle',
-    lastName: 'Ayo',
-    age: 43,
-    location: 'Ikeja',
+	firstName: "Kunle",
+	lastName: "Ayo",
+	age: 23,
+	location: "Ikeja",
+};
+
+const studentsList: Array<Student> = [student1, student2];
+const labels: string[] = ["firstName", "location"];
+
+const table: HTMLTableElement = document.createElement("table");
+const thead: HTMLTableSectionElement = document.createElement("thead");
+const tbody: HTMLTableSectionElement = document.createElement("tbody");
+
+document.body.appendChild(table);
+table.appendChild(thead);
+table.appendChild(tbody);
+
+for (let i: number = 0; i < labels.length; i++) {
+	const th: HTMLTableCellElement = document.createElement("th");
+	th.appendChild(document.createTextNode(`${labels[i]}`));
+	thead.appendChild(th);
 }
 
-let studentsList: Student[] = [];
+for (let i: number = 0; i < studentsList.length; i++) {
+	const tr: HTMLTableRowElement = document.createElement("tr");
+	tbody.appendChild(tr);
+	const values: string[] = [
+		studentsList[i].firstName,
+		studentsList[i].location,
+	];
 
-studentsList.push(student1);
-studentsList.push(student2);
-
-let myVar = document.createElement('table');
-
-for (let i = 0; i < studentsList.length; i++) {
-    let row = myVar.insertRow();
-    let name = row.insertCell();
-    let location = row.insertCell();
-    name.innerHTML = studentsList[i].firstName;
-    location.innerHTML = studentsList[i].location;
+	for (let j: number = 0; j < values.length; j++) {
+		const td: HTMLTableCellElement = document.createElement("td");
+		td.appendChild(document.createTextNode(`${values[j]}`));
+		tr.appendChild(td);
+	}
 }
-
-document.body.appendChild(myVar);
